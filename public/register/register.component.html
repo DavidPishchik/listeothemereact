@@ -1,0 +1,208 @@
+<div id="register" fxLayout="column" fusePerfectScrollbar>
+    <div id="register-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+        <div id="register-form" *fuseIfOnDom [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <img src="assets/images/logos/spaero.png">
+            </div>
+
+
+
+            <div class="title">Start your career</div>
+            <!-- <form>
+              <input type="file" />
+              <button type="submit" (click)="onChange($event)">Upload file!</button>
+            </form> -->
+
+
+                <mat-horizontal-stepper [linear]="true">
+                  <mat-step [stepControl]="firstFormGroup" md-label="false">
+                     <form [formGroup]="firstFormGroup" novalidate>
+
+                          <mat-form-field>
+                              <input matInput type="email" placeholder="Email" formControlName="email">
+                              <mat-error *ngIf="firstFormGroupErrors.email.required">
+                                  Email is required
+                              </mat-error>
+                              <mat-error *ngIf="!firstFormGroupErrors.email.required && firstFormGroupErrors.email.email">
+                                  Please enter a valid email address
+                              </mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field>
+                              <input matInput placeholder="Desired Username" formControlName="username" placeholder="Desired Username">
+                              <mat-error *ngIf="firstFormGroupErrors.username.required">
+                                  Username is required
+                              </mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field>
+                              <input matInput type="password" placeholder="Password" formControlName="password">
+                              <mat-error *ngIf="firstFormGroupErrors.password.required">
+                                  Password is required
+                              </mat-error>
+                          </mat-form-field>
+
+                          <div>
+                              <button mat-button matStepperNext value="center">Next</button>
+                          </div>
+                      </form>
+                      <!-- <p>{{ firstFormGroup.value | json }}</p> -->
+                  </mat-step>
+
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup" novalidate>
+
+
+                        <mat-form-field>
+                            <input matInput placeholder="Full Name" formControlName="fullName" placeholder="Full Name">
+                            <mat-error *ngIf="secondFormGroupErrors.fullName.required">
+                                Full Name is required
+                            </mat-error>
+                        </mat-form-field>
+
+
+                          <!-- <div class="form-group form-inline file-uploader">
+                            <div class="spanBox">
+                              <span  (click)="unhideFileUpload()" class="label label-default pictureLabel"> Picture Id </span>
+                            </div>
+
+                            <div class="fileInputBox" >
+                              <input  name="file" type="file" (change)="onChange($event)" #fileInput>
+                              <input type="hidden" name="fileHidden" formControlName="photoIdPic"/> Validation Field
+                            </div>
+
+
+                            <p *ngIf="file" class="pl-4 align-middle mb-0">{{file.name}}</p>
+                          </div> -->
+
+                        <mat-form-field>
+                            <mat-select matInput placeholder="Are you a..." formControlName="businessType" >
+                                <mat-option *ngFor="let bt of buisnessTypes" [value]="bt.value">
+                                    {{ bt.viewValue }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="secondFormGroupErrors.businessType.required">
+                                Business Type is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div>
+                            <button class="backButtonToFix" mat-button matStepperPrevious value="center">Back</button>
+                            <button mat-button matStepperNext value="center">Next</button>
+                        </div>
+                    </form>
+                    <!-- <p>{{ secondFormGroup.value | json }}</p> -->
+                  </mat-step>
+
+                  <mat-step [stepControl]="thirdFormGroup">
+                    <form [formGroup]="thirdFormGroup" novalidate>
+
+                      <!-- <div class="form-group form-inline profile-uploader">
+
+                          <div class="spanBox">
+                            <span  (click)="unhideProfileUpload()" class="label label-default profilePicLabel"> Profile Photo </span>
+                          </div>
+
+                        <div class="profileInputBox">
+                           <input name="profilePic" type="file" (change)="profilePicUpload($event)">
+                           <input type="hidden" name="fileHidden" formControlName="profilePic"/> Validation Field
+                        </div>
+
+                        <p *ngIf="file" class="pl-4 align-middle mb-0">{{file.name}}</p>
+                      </div> -->
+                        <!-- <mat-form-field>
+                            <input matInput placeholder="Profile Picture URL" formControlName="profilePic" placeholder="Profile Picture URL">
+                            <mat-error *ngIf="thirdFormGroupErrors.profilePic.required">
+                                Profile Pic is required
+                            </mat-error>
+                        </mat-form-field> -->
+
+                        <mat-form-field>
+                            <input matInput  maxlength="5" minlength="5" placeholder="Zip Code" formControlName="zipCode" placeholder="Zip Code">
+                            <mat-error *ngIf="thirdFormGroupErrors.zipCode.required">
+                                Home Zip is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select matInput placeholder="Travel Distance" formControlName="travelDistance" >
+                                <mat-option *ngFor="let td of travelDistances" [value]="td.value">
+                                    {{ td.viewValue }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="thirdFormGroupErrors.travelDistance.required">
+                                Travel Distance is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select matInput placeholder="Willing to take ground photos?"
+                                      formControlName="groundPhoto" >
+                                <mat-option *ngFor="let gp of groundPhotos" [value]="gp.value">
+                                    {{ gp.viewValue }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="thirdFormGroupErrors.groundPhoto.required">
+                                Ground Photo is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="terms" fxLayout="row" fxLayoutAlign="center center" required>
+                            <mat-checkbox name="terms" aria-label="I read and accept"
+                                          formControlName="terms" >
+                                <span>I read and accept</span>
+                            </mat-checkbox>
+                            <a href="https://spae.ro/terms">terms and conditions</a>
+                        </div>
+
+                          <div>
+                              <button mat-raised-button color="accent" class="submit-button" aria-label="Submit"
+                                    (click)="SignUp()" [disabled]="thirdFormGroup.invalid" value="center">
+                                  Submit
+                              </button>
+                          </div>
+
+                          <div>
+                              <button class="backButtonToFix" mat-button matStepperPrevious value="center">Back</button>
+                              <button class="nextButtonToFinish" mat-button matStepperNext value="center">Next</button>
+                          </div>
+                      </form>
+                      <!-- <p>{{ thirdFormGroup.value | json }}</p> -->
+                  </mat-step>
+
+                  <mat-step>
+
+
+                      <div>
+                        You've completed the first part of your application. <br/>
+                        Check your email for the next steps. <br/>
+                        We can't wait to have you on board!
+
+                        <!-- <form  (ngSubmit)="onSubmit(f)" #f="ngForm" action="">
+                        <input type="file" (change)="fileEvent($event)" />
+                        </form>
+                        <button (click)="uploadfile(f)">Upload file!</button> -->
+
+                      </div>
+                  </mat-step>
+              </mat-horizontal-stepper>
+
+                <!-- <div class="file-uploader">
+                    <input hidden type="file" #fileInput/>
+                    <button mat-fab
+                            class="add-file-button mat-accent"
+                            (click)="fileInput.click()"
+                            aria-label="Add file"
+                            *fuseIfOnDom [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                        <mat-icon>Add</mat-icon>
+                    </button>
+                </div> -->
+
+            <!-- <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Already have an account?</span>
+                <a class="link" [routerLink]="'/pages/auth/login'">Login</a>
+            </div> -->
+        </div>
+    </div>
+</div>

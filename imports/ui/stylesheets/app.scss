@@ -1,0 +1,35 @@
+.tab-content  {
+  display: none;
+};
+
+
+// .main-search-container{
+//   background: url("images/main-search-background-01.jpg") no-repeat fixed center;
+// }
+//
+.rateButton{
+  text-decoration:none;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  padding:0 15px;
+  line-height:32px;
+  height: auto;
+  width: auto;
+  display:inline-block;
+  text-align:center;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.greenCircle {
+  	background-color:#00b300;
+
+}
+.yellowCircle {
+  background-color:#cccc00;
+}
+.redCircle {
+  background-color:#e60000;
+}
